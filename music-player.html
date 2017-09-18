@@ -20,6 +20,16 @@ position: relative;
     left: 5px;
     top: 5px;
 }
+#muted {
+background: url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat;
+border:none;
+width:20px;
+height:20px;
+background-size:20px 20px;
+}
+#seek{
+background: url('https://cdn3.iconfinder.com/data/icons/sound-wave/512/b122_9-512.png') center no-repeat;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -68,9 +78,9 @@ function playPauseMusic() {
 
 function timeUpdateMusic() {
 	// Thời gian toàn bộ của bài nhạc    
-	durationTime.innerHTML = ("0"+Math.round(player.duration/60)).slice(-2) + ":" + ("0"+Math.round(player.duration%60)).slice(-2);
+	durationTime.innerHTML = ("0"+Math.round(player.duration/60)).slice(-2) + ":" + ("0"+Math.round(player.duration%59)).slice(-2);
 	// Thời gian hiện tại của bài nhạc
-	currentTime.innerHTML = ("0"+Math.round(player.currentTime/60)).slice(-2) + ":" + ("0"+Math.round(player.currentTime%60)).slice(-2);
+	currentTime.innerHTML = ("0"+Math.round(player.currentTime/60)).slice(-2) + ":" + ("0"+Math.round(player.currentTime%59)).slice(-2);
     
 	seek.max = player.duration;
 	seek.value = player.currentTime;
@@ -86,9 +96,14 @@ function mutedMusic() {
 	if (player.muted) {
 		// Mở âm thanh
 		player.muted = false;
+        $("#muted").css("background","url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat");
+        $("#muted").css("background-size","20px 20px")
 	} else {
 		// Tắt âm thanh
 		player.muted = true;
+        $("#muted").css("background","url('http://icons.iconarchive.com/icons/icons8/windows-8/256/Media-Controls-Mute-icon.png') center no-repeat");
+        $("#muted").css("background-size","20px 20px")
+        
 	}
 }
 </script>
