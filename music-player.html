@@ -14,7 +14,7 @@ position:relative;
 }
 
 .top-control {
-background:yellow;
+/* background:yellow;	*/
 position:absolute;
 top: 0;
 width: 100%;
@@ -22,11 +22,11 @@ float: left;
 }
 
 #playPause {
-background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat orange;
+background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
 border:none;
-width: 60px;
-height: 60px;
-background-size: 60px 60px;
+width: 70px;
+height: 70px;
+background-size: 70px 70px;
 position: relative;
 margin: 10px;
 float: left;
@@ -35,11 +35,14 @@ float: left;
 .song-title {
 background: #000000;
 color: #ffffff;
-padding: 2px 7px 7px;
+padding: 5px 7px 7px;
 text-decoration: underline;
 position: relative;
-top: 10px;
-float:left;
+top: 15px;
+float: left;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+font-weight:bold;
+font-size:14px;
 }
 #muted {
 background: url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat;
@@ -48,16 +51,22 @@ width:20px;
 height:20px;
 background-size:20px 20px;
 position: relative;
-top: 20px;
+float:left;
+margin: 20px 5px 10px;
 }
 .bottom-control {
 background:orange;
 position:absolute;
 bottom: 0;
 width: 100%;
+text-align:center;
 }
 #seek{
 background: url('https://cdn3.iconfinder.com/data/icons/sound-wave/512/b122_9-512.png') center no-repeat;
+}
+#currentTime, #durationTime {
+font-family: "Courier New", Courier, monospace;
+font-weight:bold;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -88,14 +97,14 @@ background: url('https://cdn3.iconfinder.com/data/icons/sound-wave/512/b122_9-51
 $(document).ready(function(){
   	var wPlayer = Math.round($(".player").width());
     $(".player").css("height",wPlayer);
-    var wSongTitle = wPlayer - 100;
+    var wSongTitle = wPlayer - 130;
     $(".song-title").css("width",wSongTitle + "px");
       
       
 	$(window).resize(function(){
       var wPlayer = Math.round($(".player").width());
       $(".player").css("height",wPlayer);
-      var wSongTitle = wPlayer - 100;
+      var wSongTitle = wPlayer - 120;
       $(".song-title").css("width",wSongTitle + "px");
     });
 });
