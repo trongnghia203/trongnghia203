@@ -8,7 +8,7 @@ width: 300px;
 height:300px;
 border: solid 1px #dcd4f9;
 border-top: solid 3px #ffce66;
-background: url("https://cdn.iphonephotographyschool.com/wp-content/uploads/Black-White-iPhone-Photos-9.jpg") no-repeat center;
+background: url("http://farm3.static.flickr.com/2531/4175439399_1d7cb64dca.jpg") no-repeat center;
 }
 #playPause {
 background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
@@ -67,10 +67,11 @@ function playPauseMusic() {
 }
 
 function timeUpdateMusic() {
-	// Thời gian toàn bộ của bài nhạc
-	durationTime.innerHTML = Math.round(player.duration);
+	// Thời gian toàn bộ của bài nhạc    
+	durationTime.innerHTML = ("0"+Math.round(player.duration/60)).slice(-2) + ":" + ("0"+Math.round(player.duration%60)).slice(-2);
 	// Thời gian hiện tại của bài nhạc
-	currentTime.innerHTML = Math.round(player.currentTime);
+	currentTime.innerHTML = ("0"+Math.round(player.currentTime/60)).slice(-2) + ":" + ("0"+Math.round(player.currentTime%60)).slice(-2);
+    
 	seek.max = player.duration;
 	seek.value = player.currentTime;
 }
