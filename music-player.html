@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- reference: https://dangthanh.org/2013/10/06/tao-mp3-player-voi-html5-va-css3/ -->
+<head>
+<style>
+.player {
+width: 300px;
+height:300px;
+border: solid 1px #dcd4f9;
+border-top: solid 3px #ffce66;
 background: url("https://cdn.iphonephotographyschool.com/wp-content/uploads/Black-White-iPhone-Photos-9.jpg") no-repeat center;
+}
+#playPause {
+background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
+border:none;
+width: 50px;
+height: 50px;
+background-size: 50px 50px;
+position: relative;
+    left: 5px;
+    top: 5px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="player">
+	<audio id="player__source" src="https://www.trongnghia203.tk/w/wp-content/uploads/2017/09/Ru-Tinh-Hong-Nhung.mp3">
+		<p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p>
+	</audio>
+	<div class="player__loading"></div>
+	<div class="player__control">
+		<button id="playPause"></button>
+		<span id="currentTime">00:00</span>
+		<input id="seek" type="range" min="0" value="0">
+		<span id="durationTime">00:00</span>
+		<button id="muted"></button>
+	</div>
+</div>
+<script>
+var player = document.getElementById('player__source'),
+	playLoading = document.querySelectorAll('.player__loading span'),
+	playPause = document.getElementById('playPause'),
+	currentTime = document.getElementById('currentTime'),
+	seek = document.getElementById('seek'),
+	durationTime = document.getElementById('durationTime'),
+	muted = document.getElementById('muted');
+    
+playPause.addEventListener('click', playPauseMusic, false);
+
+function playPauseMusic() {
+	if (player.paused) {
+		player.play();
+		// Kiểm tra thời gian hiện tại của bài nhạc
+		timeInterval = setInterval(timeUpdateMusic, 100);
+		// Thay đổi giá trị của seek
+		seek.addEventListener('change', seekMusic, false);
+        $("#playPause").css("background","url('http://files.softicons.com/download/toolbar-icons/free-sound-icons-by-design-bolts/png/72x72/Pause.png') center no-repeat");
+        $("#playPause").css("background-size","50px 50px");
+        
+	} else {
+		player.pause();
+        $("#playPause").css("background","url('http://www.slatecube.com/images/play-btn.png') center no-repeat");
+        $("#playPause").css("background-size","50px 50px");
+	}
+}
+
+function timeUpdateMusic() {
+	// Thời gian toàn bộ của bài nhạc
+	durationTime.innerHTML = Math.round(player.duration);
+	// Thời gian hiện tại của bài nhạc
+	currentTime.innerHTML = Math.round(player.currentTime);
+	seek.max = player.duration;
+	seek.value = player.currentTime;
+}
+
+function seekMusic() {
+	player.currentTime = seek.value;
+}
+
+muted.addEventListener('click', mutedMusic, false);
+
+function mutedMusic() {
+	if (player.muted) {
+		// Mở âm thanh
+		player.muted = false;
+	} else {
+		// Tắt âm thanh
+		player.muted = true;
+	}
+}
+</script>
+
+</body>
+</html>
