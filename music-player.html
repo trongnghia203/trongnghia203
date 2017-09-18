@@ -24,9 +24,9 @@ float: left;
 #playPause {
 background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
 border:none;
-width: 70px;
-height: 70px;
-background-size: 70px 70px;
+width: 60px;
+height: 60px;
+background-size: 60px 60px;
 position: relative;
 margin: 10px;
 float: left;
@@ -126,12 +126,12 @@ function playPauseMusic() {
 		// Thay đổi giá trị của seek
 		seek.addEventListener('change', seekMusic, false);
         $("#playPause").css("background","url('http://files.softicons.com/download/toolbar-icons/free-sound-icons-by-design-bolts/png/72x72/Pause.png') center no-repeat");
-        $("#playPause").css("background-size","50px 50px");
+        $("#playPause").css("background-size","60px 60px");
         
 	} else {
 		player.pause();
         $("#playPause").css("background","url('http://www.slatecube.com/images/play-btn.png') center no-repeat");
-        $("#playPause").css("background-size","50px 50px");
+        $("#playPause").css("background-size","60px 60px");
 	}
 }
 function timeUpdateMusic() {
