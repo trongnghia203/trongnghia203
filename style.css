@@ -48,16 +48,34 @@ main {
 	font-size: 14px;
 	display:block;
 	min-width:50%;
+	height:17px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
 }
 #muted {
-	background: url('volume-btn.png') center no-repeat;
+	background: url('unmuted-btn.png') center no-repeat;
 	border: none;
 	width: 20px;
 	height: 20px;
 	background-size: 20px 20px;
-	margin-top: 2px;
+	margin-top: 5px;
 	display:inline-block;
+	float:left;
 }
+/*
+#unmuted {
+	background: url('unmuted-btn.png') center no-repeat;
+	border: none;
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px;
+	margin-top: 5px;
+	display:inline-block;
+	float:left;
+}
+*/
 #waveform {
 	position: absolute;
 	bottom: 0;
@@ -68,8 +86,14 @@ main {
 #seek {
 	background: url('equalizer.png') center no-repeat;
 }
-#currentTime, #durationTime {
+
+.line2-subtitle {
 	font-family: "Courier New", Courier, monospace;
 	font-weight: bold;
-	display:inline-block;
+	height:20px;
+	display:table-cell;
+	vertical-align: middle;
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
 }
