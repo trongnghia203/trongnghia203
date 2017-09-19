@@ -7,7 +7,7 @@ main {
 .player {
 	width: 100%;
 	border: solid 1px #dcd4f9;
-	border-top: solid 3px #ffce66;
+	border-top: solid 3px #f27d0c;
 	background: url('player-bg.png') no-repeat center;
 	background-size: cover;
 	position: relative;
@@ -54,17 +54,7 @@ main {
 	white-space: nowrap;
 	vertical-align: middle;
 }
-#muted {
-	background: url('unmuted-btn.png') center no-repeat;
-	border: none;
-	width: 20px;
-	height: 20px;
-	background-size: 20px 20px;
-	margin-top: 5px;
-	display:inline-block;
-	float:left;
-}
-/*
+
 #unmuted {
 	background: url('unmuted-btn.png') center no-repeat;
 	border: none;
@@ -75,7 +65,18 @@ main {
 	display:inline-block;
 	float:left;
 }
-*/
+
+#muted {
+	background: url('muted-btn.png') center no-repeat;
+	border: none;
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px;
+	margin-top: 5px;
+	display:none;
+	float:left;
+}
+
 #waveform {
 	position: absolute;
 	bottom: 0;
