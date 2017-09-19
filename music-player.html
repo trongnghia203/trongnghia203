@@ -1,30 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"> 
 <!-- reference: https://dangthanh.org/2013/10/06/tao-mp3-player-voi-html5-va-css3/ -->
 <head>
-
+	<meta charset="utf-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
     <title></title>
 </head>
 <body>
-    <div class="player">
-        <audio id="player__source" src="https://www.trongnghia203.tk/w/wp-content/uploads/2017/09/Ru-Tinh-Hong-Nhung.mp3">
-        <p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p></audio>
-        
-		<div class="player__loading"></div>
-        
-		<div class="player__control">
-            <div class="top-control">
-                <button id="playPause"></button>
-                <div class="sub-top-control">
-                    <span class="song-title">Ru Tình - Hồng Nhung Album ABC</span>
-					<button id="muted"></button>
-                </div>
-            </div>
-            <div class="bottom-control">
-                <span id="currentTime">00:00</span> <input id="seek" min="0" type="range" value="0"> <span id="durationTime">00:00</span>
-            </div>
-        </div>
-    </div>
+	<main>
+		<div class="player">
+			<audio id="player__source" src="Ru-Tinh-Hong-Nhung.mp3">
+			<p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p></audio>
+			
+			<div class="player__loading"></div>
+			
+			<div class="player__control">
+				<div class="top-control">
+					<button id="playPause"></button>
+					
+					<div class="sub-title">
+						<span class="song-title">Ru Tình - Hồng Nhung Album ABC</span>
+						<button id="muted"></button> <span id="currentTime">00:00</span>/<span id="durationTime">00:00</span>
+					</div>
+				</div>
+				
+				
+				<div id="waveform" min="0" type="range" value="0"></div>
+				
+				<!--
+				<div class="bottom-control">
+					
+					<input id="seek" min="0" type="range" value="0">
+					
+				</div>
+				-->
+			</div>
+		</div>
+	</main>
+	
+    <script>
+	
+	$(document).ready(function() {
+		var wPlayer = Math.round($(".player").width());
+		$(".player").css("height", wPlayer);
+		
+		var wSongTitle = wPlayer - 100;
+		$(".sub-title").css("width", wSongTitle + "px");
+		
+		$(window).resize(function() {
+			var wPlayer = Math.round($(".player").width());
+			$(".player").css("height", wPlayer);
+			var wSongTitle = wPlayer - 100;
+			$(".sub-title").css("width", wSongTitle + "px");
+		});
+	});
+	
+	var player = document.getElementById('player__source'),
+		playLoading = document.querySelectorAll('.player__loading span'),
+		playPause = document.getElementById('playPause'),
+		currentTime = document.getElementById('currentTime'),
+		waveform = document.getElementById('waveform'),
+		durationTime = document.getElementById('durationTime'),
+		muted = document.getElementById('muted');
+		
+	playPause.addEventListener('click', playPauseMusic, false);
+
+	function playPauseMusic() {
+		if (player.paused) {
+			player.play();
+			wavesurfer.play()
+			// Kiểm tra thời gian hiện tại của bài nhạc
+			timeInterval = setInterval(timeUpdateMusic, 100);
+			// Thay đổi giá trị của seek
+			waveform.addEventListener('change', seekMusic, false);
+			$("#playPause").css("background", "url('pause-btn.png') center no-repeat");
+			$("#playPause").css("background-size", "60px 60px");
+		} else {
+			player.pause();
+			wavesurfer.pause();
+			$("#playPause").css("background", "url('play-btn.png') center no-repeat");
+			$("#playPause").css("background-size", "60px 60px");
+		}
+	}
+
+	function timeUpdateMusic() {
+		// Thời gian toàn bộ của bài nhạc    
+		durationTime.innerHTML = ("0" + Math.round(player.duration / 60)).slice(-2) + ":" + ("0" + Math.round(player.duration % 59)).slice(-2);
+		// Thời gian hiện tại của bài nhạc
+		currentTime.innerHTML = ("0" + Math.round(player.currentTime / 60)).slice(-2) + ":" + ("0" + Math.round(player.currentTime % 59)).slice(-2);
+		waveform.max = player.duration;
+		waveform.value = player.currentTime;
+	}
+
+	function seekMusic() {
+		player.currentTime = waveform.value;
+	}
+	
+	muted.addEventListener('click', mutedMusic, false);
+
+	function mutedMusic() {
+		if (player.muted) {
+			// Mở âm thanh
+			player.muted = false;
+			$("#muted").css("background", "url('volume-btn.png') center no-repeat");
+			$("#muted").css("background-size", "20px 20px")
+		} else {
+			// Tắt âm thanh
+			player.muted = true;
+			$("#muted").css("background", "url('mute-btn.png') center no-repeat");
+			$("#muted").css("background-size", "20px 20px")
+		}
+	}
+	
+	var wavesurfer = WaveSurfer.create({
+		container: '#waveform',
+		barWidth: 1,
+		waveColor: '#aecfe3',
+		progressColor: '#f48a23',
+		interact: false,
+		cursorColor: '#f27d0c',
+		cursorWidth: 2,
+		height: 90
+	});
+	
+	wavesurfer.load('Ru-Tinh-Hong-Nhung.mp3');
+	</script>
 </body>
 </html>

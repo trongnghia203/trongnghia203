@@ -1,20 +1,26 @@
+main {
+	width:50%;
+	height:auto;
+	margin: 10px auto;
+	display:block;
+}
 .player {
 	width: 100%;
 	border: solid 1px #dcd4f9;
 	border-top: solid 3px #ffce66;
-	background: url("http://farm3.static.flickr.com/2531/4175439399_1d7cb64dca.jpg") no-repeat center;
+	background: url('player-bg.png') no-repeat center;
 	background-size: cover;
 	position: relative;
 }
 .top-control {
-	/* background:yellow;   */
+	/* background:yellow; */
 	position: absolute;
 	top: 0;
 	width: 100%;
 	float: left;
 }
 #playPause {
-	background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
+	background: url("play-btn.png") center no-repeat;
 	border: none;
 	width: 60px;
 	height: 60px;
@@ -23,39 +29,47 @@
 	margin: 10px;
 	float: left;
 }
+
+.sub-title {
+	/* background:BlanchedAlmond; */
+	margin: 10px 10px 10px 0;
+	height:60px;
+	position: relative;
+	float: left;
+}
 .song-title {
 	background: #000000;
 	color: #ffffff;
 	padding: 5px 7px 7px;
+	margin-top: 5px;
 	text-decoration: underline;
-	position: relative;
-	top: 15px;
-	float: left;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 14px;
+	display:block;
+	min-width:50%;
 }
 #muted {
-	background: url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat;
+	background: url('volume-btn.png') center no-repeat;
 	border: none;
 	width: 20px;
 	height: 20px;
 	background-size: 20px 20px;
-	position: relative;
-	float: left;
-	margin: 20px 5px 10px;
+	margin-top: 2px;
+	display:inline-block;
 }
-.bottom-control {
-	background: orange;
+#waveform {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	text-align: center;
 }
+
 #seek {
-	background: url('https://cdn3.iconfinder.com/data/icons/sound-wave/512/b122_9-512.png') center no-repeat;
+	background: url('equalizer.png') center no-repeat;
 }
 #currentTime, #durationTime {
 	font-family: "Courier New", Courier, monospace;
 	font-weight: bold;
+	display:inline-block;
 }

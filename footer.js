@@ -1,5 +1,7 @@
-< script > $(document).ready(function() {
+< script >
+$(document).ready(function() {
     var wPlayer = Math.round($(".player").width());
+	alert(wPlayer);
     $(".player").css("height", wPlayer);
     var wSongTitle = wPlayer - 130;
     $(".song-title").css("width", wSongTitle + "px");
@@ -26,11 +28,11 @@ function playPauseMusic() {
         timeInterval = setInterval(timeUpdateMusic, 100);
         // Thay đổi giá trị của seek
         seek.addEventListener('change', seekMusic, false);
-        $("#playPause").css("background", "url('http://files.softicons.com/download/toolbar-icons/free-sound-icons-by-design-bolts/png/72x72/Pause.png') center no-repeat");
+        $("#playPause").css("background", "url('pause-btn.png') center no-repeat");
         $("#playPause").css("background-size", "60px 60px");
     } else {
         player.pause();
-        $("#playPause").css("background", "url('http://www.slatecube.com/images/play-btn.png') center no-repeat");
+        $("#playPause").css("background", "url('play-btn.png') center no-repeat");
         $("#playPause").css("background-size", "60px 60px");
     }
 }
@@ -53,12 +55,12 @@ function mutedMusic() {
     if (player.muted) {
         // Mở âm thanh
         player.muted = false;
-        $("#muted").css("background", "url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat");
+        $("#muted").css("background", "url('volume-btn.png') center no-repeat");
         $("#muted").css("background-size", "20px 20px")
     } else {
         // Tắt âm thanh
         player.muted = true;
-        $("#muted").css("background", "url('http://icons.iconarchive.com/icons/icons8/windows-8/256/Media-Controls-Mute-icon.png') center no-repeat");
+        $("#muted").css("background", "url('mute-btn.png') center no-repeat");
         $("#muted").css("background-size", "20px 20px")
     }
 } < /script>
