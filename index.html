@@ -11,37 +11,21 @@
 <body>
 	<main>
 		<div class="player">
-		<!--
-			<audio id="player__source" src="Ru-Tinh-Hong-Nhung.mp3">
-			<p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p></audio>
-			
-			<div class="player__loading"></div>
-		-->	
-			<div class="player__control">
-				<div class="top-control">
-					<button id="playPause" class="btn btn-primary" onclick="wavesurfer.playPause()"></button>
-					
-					<div class="sub-title">
-						<span class="song-title">Như Cánh Vạc Bay - Hồng Nhung</span>
-						<button id="unmuted"> </button>
-						<button id="muted"> </button>
-						<span id="currentTime" class="line2-subtitle">00:00</span>
-						<span class="line2-subtitle">/</span>
-						<span id="durationTime" class="line2-subtitle">00:00</span>
-					</div>
+			<div class="top-control">
+				<button id="playPause" class="btn btn-primary" onclick="wavesurfer.playPause()"></button>
+				
+				<div class="sub-title">
+					<span class="song-title">Như Cánh Vạc Bay - Hồng Nhung</span>
+					<button id="unmuted"> </button>
+					<button id="muted"> </button>
+					<span id="currentTime" class="line2-subtitle">00:00</span>
+					<span class="line2-subtitle">/</span>
+					<span id="durationTime" class="line2-subtitle">00:00</span>
 				</div>
-				
-				
-				<div id="waveform" min="0" type="range" value="0"></div>
-				
-				<!--
-				<div class="bottom-control">
-					
-					<input id="seek" min="0" type="range" value="0">
-					
-				</div>
-				-->
 			</div>
+			
+			
+			<div id="waveform" min="0" type="range" value="0"></div>
 		</div>
 	</main>
 	
@@ -71,19 +55,11 @@
         progressColor: '#f48a23',
         cursorColor: '#f27d0c',
         cursorWidth: 2,
-        height: 90,
+        height: 50,
         hideScrollbar: true
     });
 	
     wavesurfer.load('Nhu-Canh-Vac-Bay-Hong-Nhung.mp3');
-	
-    //	var player = document.getElementById('player');
-    //		playLoading = document.querySelectorAll('.player__loading span'),
-    //		playPause = document.getElementById('playPause'),
-    //		currentTime = document.getElementById('currentTime'),
-    //		waveform = document.getElementById('waveform'),
-    //		durationTime = document.getElementById('durationTime'),
-    //		muted = document.getElementById("muted");
     
 	wavesurfer.on('ready', function() {
 		
@@ -105,9 +81,7 @@
             if (wavesurfer.isPlaying()) {
                 // Kiểm tra thời gian hiện tại của bài nhạc
                 timeInterval = setInterval(timeUpdateMusic, 100);
-                // Thay đổi giá trị của seek
-                //seek.addEventListener('change', seekMusic, false);
-                
+				
 				$("#playPause").css("background", "url('pause-btn.png') center no-repeat");
                 $("#playPause").css("background-size", "60px 60px");
             } else {
@@ -136,14 +110,7 @@
             durationTime.innerHTML = sformat(wavesurfer.getDuration());
             // Thời gian hiện tại của bài nhạc
             currentTime.innerHTML = sformat(wavesurfer.getCurrentTime());
-            //waveform.max = wavesurfer.getDuration();
-            //waveform.value = wavesurfer.getCurrentTime();
         }
-        /*
-        	function seekMusic() {
-        		wavesurfer.currentTime = waveform.value;
-        	}
-        */
     });
 	</script>
 </body>
