@@ -2,166 +2,29 @@
 <html>
 <!-- reference: https://dangthanh.org/2013/10/06/tao-mp3-player-voi-html5-va-css3/ -->
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-.player {
-width:100%;
-border: solid 1px #dcd4f9;
-border-top: solid 3px #ffce66;
-background: url("http://farm3.static.flickr.com/2531/4175439399_1d7cb64dca.jpg") no-repeat center;
-background-size:cover;
-position:relative;
-}
 
-.top-control {
-/* background:yellow;	*/
-position:absolute;
-top: 0;
-width: 100%;
-float: left;
-}
-
-#playPause {
-background: url("http://www.slatecube.com/images/play-btn.png") center no-repeat;
-border:none;
-width: 60px;
-height: 60px;
-background-size: 60px 60px;
-position: relative;
-margin: 10px;
-float: left;
-}
-
-.song-title {
-background: #000000;
-color: #ffffff;
-padding: 5px 7px 7px;
-text-decoration: underline;
-position: relative;
-top: 15px;
-float: left;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-font-weight:bold;
-font-size:14px;
-}
-#muted {
-background: url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat;
-border:none;
-width:20px;
-height:20px;
-background-size:20px 20px;
-position: relative;
-float:left;
-margin: 20px 5px 10px;
-}
-.bottom-control {
-background:orange;
-position:absolute;
-bottom: 0;
-width: 100%;
-text-align:center;
-}
-#seek{
-background: url('https://cdn3.iconfinder.com/data/icons/sound-wave/512/b122_9-512.png') center no-repeat;
-}
-#currentTime, #durationTime {
-font-family: "Courier New", Courier, monospace;
-font-weight:bold;
-}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title></title>
 </head>
 <body>
-
-<div class="player">
-	<audio id="player__source" src="https://www.trongnghia203.tk/w/wp-content/uploads/2017/09/Ru-Tinh-Hong-Nhung.mp3">
-		<p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p>
-	</audio>
-	<div class="player__loading"></div>
-	<div class="player__control">
-    	<div class="top-control">
-          <button id="playPause"></button>
-          <div class="song-title">Ru Tình - Hồng Nhung Album ABC</div>
-          <button id="muted"></button>
-      	</div>
+    <div class="player">
+        <audio id="player__source" src="https://www.trongnghia203.tk/w/wp-content/uploads/2017/09/Ru-Tinh-Hong-Nhung.mp3">
+        <p>Trình duyệt của bạn không hỗ trợ HTML5 Audio</p></audio>
         
-    	<div class="bottom-control">
-          <span id="currentTime">00:00</span>
-          <input id="seek" type="range" min="0" value="0">
-          <span id="durationTime">00:00</span>
-      	</div>
-	</div>
-</div>
-<script>
-
-$(document).ready(function(){
-  	var wPlayer = Math.round($(".player").width());
-    $(".player").css("height",wPlayer);
-    var wSongTitle = wPlayer - 130;
-    $(".song-title").css("width",wSongTitle + "px");
-      
-      
-	$(window).resize(function(){
-      var wPlayer = Math.round($(".player").width());
-      $(".player").css("height",wPlayer);
-      var wSongTitle = wPlayer - 120;
-      $(".song-title").css("width",wSongTitle + "px");
-    });
-});
-
-var player = document.getElementById('player__source'),
-	playLoading = document.querySelectorAll('.player__loading span'),
-	playPause = document.getElementById('playPause'),
-	currentTime = document.getElementById('currentTime'),
-	seek = document.getElementById('seek'),
-	durationTime = document.getElementById('durationTime'),
-	muted = document.getElementById('muted');
-    
-playPause.addEventListener('click', playPauseMusic, false);
-function playPauseMusic() {
-	if (player.paused) {
-		player.play();
-		// Kiểm tra thời gian hiện tại của bài nhạc
-		timeInterval = setInterval(timeUpdateMusic, 100);
-		// Thay đổi giá trị của seek
-		seek.addEventListener('change', seekMusic, false);
-        $("#playPause").css("background","url('http://files.softicons.com/download/toolbar-icons/free-sound-icons-by-design-bolts/png/72x72/Pause.png') center no-repeat");
-        $("#playPause").css("background-size","60px 60px");
+		<div class="player__loading"></div>
         
-	} else {
-		player.pause();
-        $("#playPause").css("background","url('http://www.slatecube.com/images/play-btn.png') center no-repeat");
-        $("#playPause").css("background-size","60px 60px");
-	}
-}
-function timeUpdateMusic() {
-	// Thời gian toàn bộ của bài nhạc    
-	durationTime.innerHTML = ("0"+Math.round(player.duration/60)).slice(-2) + ":" + ("0"+Math.round(player.duration%59)).slice(-2);
-	// Thời gian hiện tại của bài nhạc
-	currentTime.innerHTML = ("0"+Math.round(player.currentTime/60)).slice(-2) + ":" + ("0"+Math.round(player.currentTime%59)).slice(-2);
-    
-	seek.max = player.duration;
-	seek.value = player.currentTime;
-}
-function seekMusic() {
-	player.currentTime = seek.value;
-}
-muted.addEventListener('click', mutedMusic, false);
-function mutedMusic() {
-	if (player.muted) {
-		// Mở âm thanh
-		player.muted = false;
-        $("#muted").css("background","url('http://icons.iconarchive.com/icons/icons8/ios7/256/Media-Controls-High-Volume-icon.png') center no-repeat");
-        $("#muted").css("background-size","20px 20px")
-	} else {
-		// Tắt âm thanh
-		player.muted = true;
-        $("#muted").css("background","url('http://icons.iconarchive.com/icons/icons8/windows-8/256/Media-Controls-Mute-icon.png') center no-repeat");
-        $("#muted").css("background-size","20px 20px")
-        
-	}
-}
-</script>
-
+		<div class="player__control">
+            <div class="top-control">
+                <button id="playPause"></button>
+                <div class="sub-top-control">
+                    <span class="song-title">Ru Tình - Hồng Nhung Album ABC</span>
+					<button id="muted"></button>
+                </div>
+            </div>
+            <div class="bottom-control">
+                <span id="currentTime">00:00</span> <input id="seek" min="0" type="range" value="0"> <span id="durationTime">00:00</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
