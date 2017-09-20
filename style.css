@@ -20,7 +20,7 @@ main {
 	float: left;
 }
 #playPause {
-	background: url("play-btn.png") center no-repeat;
+	background: url("images/play-btn.png") center no-repeat;
 	border: none;
 	width: 60px;
 	height: 60px;
