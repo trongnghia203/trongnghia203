@@ -56,12 +56,15 @@
         cursorColor: '#f27d0c',
         cursorWidth: 2,
         height: 50,
-        hideScrollbar: true
+        hideScrollbar: true,
+		minPxPerSec: 1,
+		normalize: true
     });
 	
-    wavesurfer.load('Nhu-Canh-Vac-Bay-Hong-Nhung.mp3');
+    wavesurfer.load('audio/Nhu-Canh-Vac-Bay-Hong-Nhung.mp3');
     
 	wavesurfer.on('ready', function() {
+		
 		
 		unmuted.onclick = function() {
             wavesurfer.setMute(true);
@@ -82,10 +85,10 @@
                 // Kiểm tra thời gian hiện tại của bài nhạc
                 timeInterval = setInterval(timeUpdateMusic, 100);
 				
-				$("#playPause").css("background", "url('pause-btn.png') center no-repeat");
+				$("#playPause").css("background", "url('images/pause-btn.png') center no-repeat");
                 $("#playPause").css("background-size", "60px 60px");
             } else {
-                $("#playPause").css("background", "url('play-btn.png') center no-repeat");
+                $("#playPause").css("background", "url('images/play-btn.png') center no-repeat");
                 $("#playPause").css("background-size", "60px 60px");
             }
         }
